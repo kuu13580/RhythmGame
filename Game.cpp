@@ -4,7 +4,9 @@
 #include "Lane.h"
 
 Game::Game(const InitData& init)
-	: IScene{ init }, speed_(1.0), border_y_(Scene::Size().y - 100), delta_time_(0), head_(chart_.begin()), font_(Font{ 20 }), shown_judge_(None), start_judge_(-10)
+	: IScene{ init }, speed_(1.0), border_y_(Scene::Size().y - 100), delta_time_(0),
+	head_(chart_.begin()), font_(Font{ 20 }), shown_judge_(None), start_judge_(-10),
+	audio_(Audio{ U"src/SE/Clap01.mp3" })
 {
 	// 背景色設定
 	Scene::SetBackground(Palette::Black);
@@ -13,6 +15,7 @@ Game::Game(const InitData& init)
 		lanes_ << CLane(300 + (Scene::Size().x / (NUM_LANE - 1) - 200) * i, 20, i);
 	}
 	setChart();
+
 }
 
 void Game::update() {
@@ -40,10 +43,13 @@ void Game::update() {
 			shown_judge_ = MISS;
 			start_judge_ = delta_time_;
 		}
-		if (input.down() and judge != None) {
-			lanes_.at(i).DeleteActiveNote();
-			shown_judge_ = judge;
-			start_judge_ = delta_time_;
+		if (input.down()) {
+			audio_.playOneShot(0.2);
+			if (judge != None) {
+				lanes_.at(i).DeleteActiveNote();
+				shown_judge_ = judge;
+				start_judge_ = delta_time_;
+			}
 		}
 
 	}

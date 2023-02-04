@@ -26,6 +26,8 @@ private:
 	double start_judge_;
 	// コンボ数
 	int32 combo_;
+	// タップ音
+	const Audio audio_;
 public:
 	Game(const InitData& init);
 	void update() override;
