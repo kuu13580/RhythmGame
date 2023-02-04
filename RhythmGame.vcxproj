@@ -114,6 +114,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Lane.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Note.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -318,6 +319,7 @@
   <ItemGroup>
     <ClInclude Include="common.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Lane.h" />
     <ClInclude Include="Note.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title.h" />

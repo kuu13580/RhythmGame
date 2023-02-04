@@ -20,7 +20,6 @@ public:
 	~CNote() {}
 	void update(const double& speed = 1.0) ;
 	void draw() { note_.draw(color_); }
-	void test() { life_time_++; }
 	Vec2 getPos() { return pos_; }
-	Score checkCollision(double speed, int32 border_line);
+	Score checkCollision(const double& speed, const int32& border_line);
 };

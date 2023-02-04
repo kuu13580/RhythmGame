@@ -2,11 +2,6 @@
 #include "Title.h"
 #include "Game.h"
 
-const uint32 PERFECT_TIME = 50;
-const uint32 GREAT_TIME = 100;
-const uint32 GOOD_TIME = 200;
-const uint32 MISS_TIME = 500;
-
 void Main()
 {
 	App manager;
