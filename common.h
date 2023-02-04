@@ -35,7 +35,7 @@ constexpr uint32 GOOD_TIME = 200;
 constexpr uint32 MISS_TIME = 500;
 
 // ノーツ初期出現y座標
-constexpr uint32 DEFAULT_NOTE_START_Y = 100;
+constexpr uint32 DEFAULT_NOTE_START_Y = 20;
 
 // レーンの最大ノーツ数
 constexpr uint32 MAX_NOTES_OF_LANE = 20;
