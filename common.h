@@ -50,6 +50,9 @@ constexpr uint32 SHOW_JUDGEMENT_TIME = 1000;
 // テスト用譜面データ
 extern Array<NoteData> test;
 
+// レーン数
+constexpr int8 NUM_LANE = 4;
+
 // 名前変えるかも
 typedef enum Score {
 	None,

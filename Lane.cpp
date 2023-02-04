@@ -20,10 +20,6 @@ void CLane::addNote() {
 }
 
 void CLane::update(const double& speed, const int32& border_line) {
-	// 判定範囲外に行ったら消す
-	if (notes_.at(active_note_).checkCollision(speed, border_line) == OVER) {
-		DeleteActiveNote();
-	}
 	// ノーツを更新
 	for (int32 count = 0, i = active_note_; count < num_active_note_; count++) {
 		notes_.at(i).update(speed);
@@ -43,11 +39,7 @@ void CLane::draw() {
 
 Score CLane::checkCollision(const double& speed, const int32& border_line) {
 	// 判定ライン判定
-	Score result = notes_.at(active_note_).checkCollision(speed, border_line);
-	if (result != None) { // 判定あり
-		DeleteActiveNote();
-	}
-	return result;
+	return notes_.at(active_note_).checkCollision(speed, border_line);
 }
 
 // 先頭のノーツを消す

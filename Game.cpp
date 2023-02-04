@@ -9,8 +9,8 @@ Game::Game(const InitData& init)
 	// 背景色設定
 	Scene::SetBackground(Palette::Black);
 	// レーンを設定
-	for (int8 i = 0; i < 4; i++) {
-		lanes_ << CLane(300 + (Scene::Size().x / 3 - 200) * i, 20, i);
+	for (int8 i = 0; i < NUM_LANE; i++) {
+		lanes_ << CLane(300 + (Scene::Size().x / (NUM_LANE - 1) - 200) * i, 20, i);
 	}
 	setChart();
 }
@@ -26,22 +26,26 @@ void Game::update() {
 	for (auto& lane : lanes_) {
 		lane.update(speed_, border_y_);
 	}
-	// キー入力処理
-	if (KeyF.down()) {
-		shown_judge_ = lanes_.at(0).checkCollision(speed_, border_y_);
-		start_judge_ = delta_time_;
-	}
-	if (KeyG.down()) {
-		shown_judge_ = lanes_.at(1).checkCollision(speed_, border_y_);
-		start_judge_ = delta_time_;
-	}
-	if (KeyH.down()) {
-		shown_judge_ = lanes_.at(2).checkCollision(speed_, border_y_);
-		start_judge_ = delta_time_;
-	}
-	if (KeyJ.down()) {
-		shown_judge_ = lanes_.at(3).checkCollision(speed_, border_y_);
-		start_judge_ = delta_time_;
+	// 判定処理
+	InputGroup input;
+	for (int i = 0; i < NUM_LANE; i++) {
+		input = i == 0 ? KeyF
+			: i == 1 ? KeyG
+			: i == 2 ? KeyH
+			: i == 3 ? KeyJ
+			: KeySpace;
+		Score judge = lanes_.at(i).checkCollision(speed_, border_y_);
+		if (judge == OVER) {
+			lanes_.at(i).DeleteActiveNote();
+			shown_judge_ = MISS;
+			start_judge_ = delta_time_;
+		}
+		if (input.down() and judge != None) {
+			lanes_.at(i).DeleteActiveNote();
+			shown_judge_ = judge;
+			start_judge_ = delta_time_;
+		}
+
 	}
 }
 

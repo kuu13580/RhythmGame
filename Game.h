@@ -24,6 +24,8 @@ private:
 	Score shown_judge_;
 	// 判定表示開始時間
 	double start_judge_;
+	// コンボ数
+	int32 combo_;
 public:
 	Game(const InitData& init);
 	void update() override;
