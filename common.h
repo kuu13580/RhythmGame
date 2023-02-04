@@ -44,6 +44,9 @@ constexpr uint32 MAX_NOTES_OF_LANE = 20;
 constexpr uint32 NOTE_SIZE = 20;
 constexpr double NOTE_ASPECT = 0.5;
 
+// 判定表示時間(ms)
+constexpr uint32 SHOW_JUDGEMENT_TIME = 1000;
+
 // テスト用譜面データ
 extern Array<NoteData> test;
 

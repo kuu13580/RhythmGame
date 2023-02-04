@@ -18,6 +18,12 @@ private:
 	Array<NoteData> chart_;
 	// 譜面読み出し用イテレータ
 	Array<NoteData>::iterator head_;
+	// 判定表示フォント
+	const Font font_;
+	// 表示する判定
+	Score shown_judge_;
+	// 判定表示開始時間
+	double start_judge_;
 public:
 	Game(const InitData& init);
 	void update() override;

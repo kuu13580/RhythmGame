@@ -4,7 +4,7 @@
 #include "Lane.h"
 
 Game::Game(const InitData& init)
-	: IScene{ init }, speed_(1.0), border_y_(Scene::Size().y - 100), delta_time_(0), head_(chart_.begin())
+	: IScene{ init }, speed_(1.0), border_y_(Scene::Size().y - 100), delta_time_(0), head_(chart_.begin()), font_(Font{ 20 }), shown_judge_(None), start_judge_(-10)
 {
 	// 背景色設定
 	Scene::SetBackground(Palette::Black);
@@ -28,16 +28,20 @@ void Game::update() {
 	}
 	// キー入力処理
 	if (KeyF.down()) {
-		Print << lanes_.at(0).checkCollision(speed_, border_y_);
+		shown_judge_ = lanes_.at(0).checkCollision(speed_, border_y_);
+		start_judge_ = delta_time_;
 	}
 	if (KeyG.down()) {
-		Print << lanes_.at(1).checkCollision(speed_, border_y_);
+		shown_judge_ = lanes_.at(1).checkCollision(speed_, border_y_);
+		start_judge_ = delta_time_;
 	}
 	if (KeyH.down()) {
-		Print << lanes_.at(2).checkCollision(speed_, border_y_);
+		shown_judge_ = lanes_.at(2).checkCollision(speed_, border_y_);
+		start_judge_ = delta_time_;
 	}
 	if (KeyJ.down()) {
-		Print << lanes_.at(3).checkCollision(speed_, border_y_);
+		shown_judge_ = lanes_.at(3).checkCollision(speed_, border_y_);
+		start_judge_ = delta_time_;
 	}
 }
 
@@ -47,6 +51,16 @@ void Game::draw() const {
 	// 描画
 	for (auto lane : lanes_) {
 		lane.draw();
+	}
+	// 判定の表示
+	if (delta_time_ < start_judge_ + SHOW_JUDGEMENT_TIME / 1000.0) {
+		String judge_text =
+			shown_judge_ == PERFECT ? U"Perfect"
+			: shown_judge_ == GREAT ? U"Great"
+			: shown_judge_ == GOOD ? U"Good"
+			: shown_judge_ == MISS ? U"MISS"
+			: U"";
+		font_(judge_text).drawAt(Scene::Center().x, border_y_ - 30, Palette::Yellow);
 	}
 }
 
