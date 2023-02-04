@@ -37,6 +37,10 @@ constexpr uint32 DEFAULT_NOTE_START_Y = 100;
 // レーンの最大ノーツ数
 constexpr uint32 MAX_NOTES_OF_LANE = 20;
 
+// ノーツ情報
+constexpr uint32 NOTE_SIZE = 20;
+constexpr double NOTE_ASPECT = 0.5;
+
 // 名前変えるかも
 typedef enum Score {
 	None,
@@ -44,6 +48,7 @@ typedef enum Score {
 	GREAT,
 	GOOD,
 	MISS,
+	OVER,
 } Score;
 
 

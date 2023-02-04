@@ -23,7 +23,7 @@ public:
 	CLane(int32 pos_x, int32 width, int32 no);
 	// ノーツ追加
 	void addNote();
-	void update(const double& speed);
+	void update(const double& speed, const int32& border_line);
 	void draw();
 	// 判定
 	Score checkCollision(const double& speed, const int32& border_line);

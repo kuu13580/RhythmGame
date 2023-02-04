@@ -25,5 +25,6 @@ Score CNote::checkCollision(const double& speed, const int32& border_line) {
 		: diff <= GREAT_TIME ? GREAT
 		: diff <= GOOD_TIME ? GOOD
 		: diff <= MISS_TIME ? MISS
+		: pos_.y > border_line ? OVER
 		: None;
 }

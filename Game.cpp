@@ -6,19 +6,21 @@
 Game::Game(const InitData& init)
 	: IScene{ init }, speed_(1.0), border_y_(Scene::Size().y - 100), delta_time_(0)
 {
+	// 背景色設定
 	Scene::SetBackground(Palette::Black);
-	for (int i = 0; i < 4; i++) {
+	// レーンを設定
+	for (int8 i = 0; i < 4; i++) {
 		lanes_ << CLane(300 + (Scene::Size().x / 3 - 200) * i, 20, i);
 	}
-	lanes_.at(0).addNote();
-	lanes_.at(1).addNote();
 }
 
 void Game::update() {
 	delta_time_ += Scene::DeltaTime();
+	// レーン更新
 	for (auto& lane : lanes_) {
-		lane.update(speed_);
+		lane.update(speed_, border_y_);
 	}
+	// キー入力処理
 	if (KeyF.down()) {
 		Print << lanes_.at(0).checkCollision(speed_, border_y_);
 	}

@@ -5,22 +5,23 @@
 CLane::CLane(int32 pos_x, int32 width, int32 no) :
 	pos_x_(pos_x), width_(width), no_(no), active_note_(0), num_active_note_(0)
 {
+	// 最大数のノーツを準備
 	notes_.reserve(MAX_NOTES_OF_LANE);
 	for (int32 i = 0; i < MAX_NOTES_OF_LANE; i++) {
-		notes_ << CNote(Vec2{ pos_x_, -100 }, 10, 0.5, Palette::White);
+		notes_ << CNote(Vec2{ pos_x_, -100 }, NOTE_SIZE, NOTE_ASPECT, Palette::White);
 	}
 }
 
 // ノーツ追加
 void CLane::addNote() {
 	if (num_active_note_ >= MAX_NOTES_OF_LANE) return;
-	notes_.at((active_note_ + num_active_note_ + 1) % MAX_NOTES_OF_LANE) = CNote(Vec2{ pos_x_, DEFAULT_NOTE_START_Y }, 10, 0.5, Palette::White);
+	notes_.at((active_note_ + num_active_note_ + 1) % MAX_NOTES_OF_LANE) = CNote(Vec2{ pos_x_, DEFAULT_NOTE_START_Y }, NOTE_SIZE, NOTE_ASPECT, Palette::White);
 	num_active_note_++;
 }
 
-void CLane::update(const double& speed) {
-	// 画面外に行ったら消す
-	if (notes_.at(active_note_).getPos().y > Scene::Size().y) {
+void CLane::update(const double& speed, const int32& border_line) {
+	// 判定範囲外に行ったら消す
+	if (notes_.at(active_note_).checkCollision(speed, border_line) == OVER) {
 		DeleteActiveNote();
 	}
 	// ノーツを更新
@@ -41,6 +42,7 @@ void CLane::draw() {
 }
 
 Score CLane::checkCollision(const double& speed, const int32& border_line) {
+	// 判定ライン判定
 	Score result = notes_.at(active_note_).checkCollision(speed, border_line);
 	if (result != None) { // 判定あり
 		DeleteActiveNote();
