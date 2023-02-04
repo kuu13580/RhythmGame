@@ -18,13 +18,13 @@ void CNote::update(const double& speed) {
 
 // 判定ラインとの衝突判定
 Score CNote::checkCollision(const double& speed, const int32& border_line) {
-	// 判定ラインとの時間差(ms)
-	double diff = AbsDiff(border_line, (int32)pos_.y) / (DEFAULT_SPEED * speed) * 1000;
+	// 判定ラインとの時間差(ms)(正：遅い、負：早い)
+	double diff = ((int32)pos_.y - border_line) / (DEFAULT_SPEED * speed) * 1000;
 	//
-	return diff <= PERFECT_TIME ? PERFECT
-		: diff <= GREAT_TIME ? GREAT
-		: diff <= GOOD_TIME ? GOOD
-		: diff <= MISS_TIME ? MISS
-		: pos_.y > border_line ? OVER
+	return Abs(diff) <= PERFECT_TIME ? PERFECT
+		: Abs(diff) <= GREAT_TIME ? GREAT
+		: Abs(diff) <= GOOD_TIME ? GOOD
+		: GOOD_TIME < diff ? OVER
+		: - diff <= MISS_TIME ? MISS
 		: None;
 }
