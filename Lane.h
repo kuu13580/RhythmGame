@@ -11,7 +11,7 @@ private:
 	// 幅
 	int32 width_;
 	// レーンナンバー(左から0,1,...)
-	int32 no_;
+	int8 no_;
 	// ノーツ
 	Array<CNote> notes_;
 	// 有効なノーツ先頭
@@ -20,7 +20,7 @@ private:
 	int32 num_active_note_;
 public:
 	// コンストラクタ
-	CLane(int32 pos_x, int32 width, int32 no);
+	CLane(int32 pos_x, int32 width, int8 no);
 	// ノーツ追加
 	void addNote();
 	void update(const double& speed, const int32& border_line);

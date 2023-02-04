@@ -2,7 +2,7 @@
 #include "Lane.h"
 #include "Note.h"
 
-CLane::CLane(int32 pos_x, int32 width, int32 no) :
+CLane::CLane(int32 pos_x, int32 width, int8 no) :
 	pos_x_(pos_x), width_(width), no_(no), active_note_(0), num_active_note_(0)
 {
 	// 最大数のノーツを準備
