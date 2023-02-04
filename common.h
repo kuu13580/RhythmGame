@@ -17,7 +17,10 @@ struct GameData
 // ノーツのデータ
 typedef struct NoteData {
 	int32 time; // 設置時間(ms)
-	int32 line; // ライン
+	int8 lane; // レーン
+	bool operator>(const NoteData &another) {
+		return this->time == another.time ? this->lane > another.lane : this->time > another.time;
+	}
 }NoteData;
 
 //========定数定義(後々Excel等でいじれるように改良)==========
