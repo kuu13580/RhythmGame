@@ -16,7 +16,7 @@ struct GameData
 
 // ノーツのデータ
 typedef struct NoteData {
-	int32 time; // 設置時間(ms)
+	uint32 time; // 設置時間(ms)
 	int8 lane; // レーン
 	bool operator>(const NoteData &another) {
 		return this->time == another.time ? this->lane > another.lane : this->time > another.time;
@@ -43,6 +43,9 @@ constexpr uint32 MAX_NOTES_OF_LANE = 20;
 // ノーツ情報
 constexpr uint32 NOTE_SIZE = 20;
 constexpr double NOTE_ASPECT = 0.5;
+
+// テスト用譜面データ
+extern Array<NoteData> test;
 
 // 名前変えるかも
 typedef enum Score {

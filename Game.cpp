@@ -4,7 +4,7 @@
 #include "Lane.h"
 
 Game::Game(const InitData& init)
-	: IScene{ init }, speed_(1.0), border_y_(Scene::Size().y - 100), delta_time_(0)
+	: IScene{ init }, speed_(1.0), border_y_(Scene::Size().y - 100), delta_time_(0), head_(chart_.begin())
 {
 	// 背景色設定
 	Scene::SetBackground(Palette::Black);
@@ -12,10 +12,16 @@ Game::Game(const InitData& init)
 	for (int8 i = 0; i < 4; i++) {
 		lanes_ << CLane(300 + (Scene::Size().x / 3 - 200) * i, 20, i);
 	}
+	setChart();
 }
 
 void Game::update() {
 	delta_time_ += Scene::DeltaTime();
+	// 譜面更新
+	while (head_ != chart_.end() and head_->time <= delta_time_ * 1000) {
+		lanes_.at(head_->lane).addNote();
+		head_++;
+	}
 	// レーン更新
 	for (auto& lane : lanes_) {
 		lane.update(speed_, border_y_);
@@ -42,4 +48,13 @@ void Game::draw() const {
 	for (auto lane : lanes_) {
 		lane.draw();
 	}
+}
+
+// 譜面データを設定
+void Game::setChart() {
+	// デバッグではtestデータを使用(実際はファイルから読み込み)
+	for (const auto& note : test) {
+		chart_ << note;
+	}
+	head_ = chart_.begin();
 }
