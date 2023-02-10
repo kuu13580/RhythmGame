@@ -2,9 +2,9 @@
 #include "Note.h"
 
 CNote::CNote(Vec2 pos, int32 radius, double aspect, Color color) :
-	pos_(pos), radius_(radius), aspect_(aspect), color_(color), life_time_(0)
+	pos_(pos), width_(radius), aspect_(aspect), color_(color), life_time_(0)
 {
-	note_ = Ellipse( pos_, radius_, radius_ * aspect_);
+	note_ = Ellipse( pos_, width_, width_ * aspect_);
 }
 
 void CNote::update(const double& speed) {
