@@ -1,8 +1,8 @@
 ﻿#include "common.h"
 #include "Note.h"
 
-CNote::CNote(Vec2 pos, int32 radius, double aspect, Color color) :
-	pos_(pos), width_(radius), aspect_(aspect), color_(color), life_time_(0)
+CNote::CNote(Vec2 pos, int32 width, double aspect, Color color) :
+	pos_(pos), width_(width), aspect_(aspect), color_(color), life_time_(0)
 {
 	note_ = Ellipse( pos_, width_, width_ * aspect_);
 }

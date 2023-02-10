@@ -17,7 +17,7 @@ protected:
 	// 生成時間
 	double life_time_;
 public:
-	CNote(Vec2 pos, int32 radius, double aspect, Color color);
+	CNote(Vec2 pos, int32 width, double aspect, Color color);
 	~CNote() {}
 	void update(const double& speed = 1.0) ;
 	void draw() { note_.draw(color_); }
