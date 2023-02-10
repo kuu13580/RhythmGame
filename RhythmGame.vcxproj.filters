@@ -147,7 +147,7 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Note.cpp">
+    <ClCompile Include="NoteBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -157,6 +157,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LongNote.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Note.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -797,7 +800,7 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Note.h">
+    <ClInclude Include="NoteBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
@@ -807,6 +810,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LongNote.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Note.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
