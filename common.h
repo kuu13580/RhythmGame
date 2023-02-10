@@ -20,7 +20,7 @@ typedef struct NoteData {
 	uint32 duration; // 設置時間(ms)<0以外でロングノーツ>
 	int8 lane; // レーン
 	bool operator>(const NoteData &another) {
-		return this->s_time == another.s_time ? this->lane > another.lane : this->time > another.time;
+		return this->s_time == another.s_time ? this->lane > another.lane : this->s_time > another.s_time;
 	}
 }NoteData;
 
