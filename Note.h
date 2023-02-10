@@ -5,6 +5,8 @@ class CNote {
 private:
 	// 描画本体
 	Ellipse note_;
+	// 縦横比
+	double aspect_;
 protected:
 	// 色
 	Color color_;
@@ -12,8 +14,6 @@ protected:
 	Vec2 pos_;
 	// 大きさ(横)
 	int32 width_;
-	// 縦横比
-	double aspect_;
 	// 生成時間
 	double life_time_;
 public:
