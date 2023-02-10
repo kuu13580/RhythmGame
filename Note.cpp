@@ -1,11 +1,11 @@
 ﻿#include "common.h"
 #include "Note.h"
 
-CNote::CNote(Vec2 pos, int32 width, double aspect, Color color) :
-	pos_(pos), width_(width), aspect_(aspect), color_(color), life_time_(0)
-{
-	note_ = Ellipse( pos_, width_, width_ * aspect_);
+CNote::CNote(Vec2 pos, int32 width, double aspect, Color color)
+	: CNoteBase(pos, width, color), aspect_(aspect) {
+	note_ = Ellipse(pos_, width_, width_ * aspect_);
 }
+
 
 void CNote::update(const double& speed) {
 	// ノーツ出現からの更新時間 
@@ -25,6 +25,6 @@ Score CNote::checkCollision(const double& speed, const int32& border_line) {
 		: Abs(diff) <= GREAT_TIME ? GREAT
 		: Abs(diff) <= GOOD_TIME ? GOOD
 		: GOOD_TIME < diff ? OVER
-		: - diff <= MISS_TIME ? MISS
+		: -diff <= MISS_TIME ? MISS
 		: None;
 }
