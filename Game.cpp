@@ -21,7 +21,7 @@ Game::Game(const InitData& init)
 void Game::update() {
 	delta_time_ += Scene::DeltaTime();
 	// 譜面更新
-	while (head_ != chart_.end() and head_->time <= delta_time_ * 1000) {
+	while (head_ != chart_.end() and head_->s_time <= delta_time_ * 1000) {
 		lanes_.at(head_->lane).addNote();
 		head_++;
 	}

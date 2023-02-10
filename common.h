@@ -16,10 +16,11 @@ struct GameData
 
 // ノーツのデータ
 typedef struct NoteData {
-	uint32 time; // 設置時間(ms)
+	uint32 s_time; // 設置開始時間(ms)
+	uint32 duration; // 設置時間(ms)<0以外でロングノーツ>
 	int8 lane; // レーン
 	bool operator>(const NoteData &another) {
-		return this->time == another.time ? this->lane > another.lane : this->time > another.time;
+		return this->s_time == another.s_time ? this->lane > another.lane : this->time > another.time;
 	}
 }NoteData;
 
